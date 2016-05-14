@@ -1,0 +1,24 @@
+FROM klabberlin/node:6.1.0
+MAINTAINER Max Kimambo <max.kimambo@klab-berlin.com>
+
+ENV NODE_ENV=development
+ENV PORT=9000
+
+USER root
+
+COPY startup.sh /home/www/
+
+RUN chmod +x /home/www/startup.sh
+
+WORKDIR /var/www
+
+# Here is where you mount your source files into.
+VOLUME ["/var/www"]
+
+RUN npm install
+
+RUN npm install -g nodemon gulp gulp-cli bower yo generator-angular
+
+EXPOSE $PORT
+
+ENTRYPOINT ["/home/www/startup.sh"]
