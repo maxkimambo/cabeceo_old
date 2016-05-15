@@ -14,13 +14,12 @@ var UserSchema = new Schema({
   phone: String,
   score: Number,
   gender: String,
-  Newsletter: boolean,
+  Newsletter: Boolean,
   OptInDate: Date,
-  showProfile: boolean,
+  showProfile: Boolean,
   dateOfBirth: Date,
   height: Number,
   mobile: String,
-
   address: {
     street: String,
     house: String,
@@ -28,7 +27,6 @@ var UserSchema = new Schema({
     city: String,
     country: String
   },
-
   email: {
     type: String,
     lowercase: true,
@@ -41,7 +39,12 @@ var UserSchema = new Schema({
     }
   },
   dances : [{name: String, proficiency : Number}],
-  role: {
+  bioText : String,
+  photos : [String],
+  friends: [String],
+  followers: [String],
+  following: [String],
+    role: {
     type: String,
     default: 'user'
   },
@@ -55,11 +58,14 @@ var UserSchema = new Schema({
       }
     }
   },
+  membershipType: String,
   provider: String,
   salt: String,
   facebook: {},
   google: {},
-  github: {}
+  github: {},
+  userSince: {type: Date, default: Date.now},
+  lastLogin: {type: Date, default: Date.now}
 });
 
 /**
