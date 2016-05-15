@@ -1,6 +1,7 @@
 'use strict';
 
-import app from '../..';
+// import app from '../..';
+import app from '../../app'
 import User from './user.model';
 import request from 'supertest';
 

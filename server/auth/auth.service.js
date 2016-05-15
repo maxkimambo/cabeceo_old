@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 import expressJwt from 'express-jwt';
 import compose from 'composable-middleware';
 import User from '../api/user/user.model';
+import settings from '../config/environment/shared';
 
 var validateJwt = expressJwt({
   secret: config.secrets.session
@@ -64,7 +65,7 @@ export function hasRole(roleRequired) {
  */
 export function signToken(id, role) {
   return jwt.sign({ _id: id, role: role }, config.secrets.session, {
-    expiresIn: 60 * 60 * 5
+     expiresIn: settings.sessionTimeout
   });
 }
 

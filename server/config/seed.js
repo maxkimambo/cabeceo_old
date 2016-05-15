@@ -39,17 +39,23 @@ Thing.find({}).remove()
     });
   });
 
+// find all remove and recreate
 User.find({}).remove()
   .then(() => {
     User.create({
       provider: 'local',
-      name: 'Test User',
+      name: 'test',
+      firstName: 'Joe',
+      lastName: 'Doe',
       email: 'test@example.com',
+      score: 100,
       password: 'test'
     }, {
       provider: 'local',
       role: 'admin',
       name: 'Admin',
+      firstName: 'Admin',
+      lastName: 'Admin',
       email: 'admin@example.com',
       password: 'admin'
     })

@@ -4,6 +4,8 @@ import User from './user.model';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
+import settings from '../../config/environment/shared';
+
 
 function validationError(res, statusCode) {
   statusCode = statusCode || 422;
@@ -41,7 +43,7 @@ export function create(req, res, next) {
   newUser.save()
     .then(function(user) {
       var token = jwt.sign({ _id: user._id }, config.secrets.session, {
-        expiresIn: 60 * 60 * 5
+        expiresIn: settings.sessionTimeout
       });
       res.json({ token });
     })
